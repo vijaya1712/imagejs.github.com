@@ -4,7 +4,6 @@
 // use instead imagejs.modules[yourModule].
 
 imagejs.msg('mainMenu loaded'); // to notify via console and div#msg
-
 function handleDownloadImage() {
     document.getElementById('cvBase').getContext('2d').drawImage(document.getElementById('cvTop'),0,0);
     var downloadImage = imagejs.canvas2Image('cvBase'); //Get updated base canvas
@@ -30,7 +29,6 @@ function handleJSONDownload2(){
     var segText = JSON.stringify(imagejs.data.seg);
 	var compressedSegText = LZW.compress(segText);
 	var text = imageURI + seperatorString + compressedSegText;
-
     var bb = new WebKitBlobBuilder();
     bb.append(text);
     var b = bb.getBlob('application/text');
@@ -38,7 +36,7 @@ function handleJSONDownload2(){
     oURL = oURL.createObjectURL(b);
     document.getElementById('jdButton').href = oURL;
 }
- 
+
 
 (function(){
     var listOfModules={

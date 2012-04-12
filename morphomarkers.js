@@ -27,7 +27,7 @@
 				var y = evt.clientY-evt.target.offsetTop;
 				//console.log(x,y);
 				imagejs.msg('('+x+','+y+')');
-				var dt = jmat.cloneArray(imagejs.data.dt0);
+				var dt = jmat.cloneArray(imagejs.data.img);
 				//var yx=dt[y][x];
 				if (jmat.max(dt[y][x].slice(0,3))>150){dt[y][x]=[0,0,0,dt[y][x][3]]}
 				else{dt[y][x]=[255,255,255,dt[y][x][3]]}
