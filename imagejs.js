@@ -3,12 +3,18 @@ console.log('imagejs loaded');
 //jmat.gId('cvBase').style.border='solid 1px';
 //<script src="http://localhost:8888/jmat/jmat.js"></script>
 //<script src="http://jmat.googlecode.com/git/jmat.js"></script>
+
 // Load imagejs
 imagejs={
-		canvas2Image:function(canvasid){
-            var canvasvariable = document.getElementById(canvasid);
-            return canvasvariable.toDataURL("image/png");
-        },
+
+// Returns a blob representing the image contained in the canvas in the PNG format.
+canvas2Image:function(canvasid, callback){
+	var canvasvariable = document.getElementById(canvasid);
+	return canvasvariable.toBlob(function (blob) {
+		callback(blob);
+	});
+},
+
 readImage:function(f){ // read image file
 	f=f.item(0); // assuming there is only one file
 	jmat.gId('msg').textContent='loading '+f.name+' ... ';
@@ -26,7 +32,6 @@ readImage:function(f){ // read image file
 			var ctx=cvBase.getContext('2d');
 			ctx.drawImage(this,0,0);
 			imagejs.data.img=jmat.imread(cvBase);
-			
 			// check that image size is ok
 			if(cvBase.width*cvBase.height>4000000){
 				jmat.gId('msg').innerHTML+='<span style="color:red">image too large, current version is limited to 4 MPixels</span>';
